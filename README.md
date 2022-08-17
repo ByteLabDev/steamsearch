@@ -6,7 +6,7 @@ SteamSearch searches for apps on the Steam store.
 ## Usage
 
 ```javascript
-const { steamSearch } = require(`steamsearch`);
+const { steamSearch } = require(`@bytelab/steamsearch`);
 
 steamSearch(`Half-Life`, `us`).then(game=>{
     console.log(game.price_overview.final_formatted);
