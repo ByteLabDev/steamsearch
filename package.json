@@ -3,6 +3,10 @@
   "version": "1.0.1",
   "description": "Searches for apps on the Steam store.",
   "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ByteLabDev/steamsearch.git"
+  },
   "dependencies": {
     "data-uri-to-buffer": "^4.0.0",
     "fetch-blob": "^3.2.0",
