@@ -19,7 +19,6 @@
     "formdata-polyfill": "^4.0.10",
     "node-domexception": "^1.0.0",
     "node-fetch": "^2.6.7",
-    "string-similarity": "^4.0.4",
     "web-streams-polyfill": "^3.2.1"
   },
   "scripts": {

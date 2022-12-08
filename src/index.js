@@ -1,5 +1,4 @@
 const fetch = require(`node-fetch`);
-const stringSimilarity = require("string-similarity");
 
 module.exports = {
 
@@ -14,7 +13,7 @@ module.exports = {
         return new Promise(function(res, rej){
 
             if(!name || typeof name != "string") rej(new Error(`Invalid search`));
-            const store = fetch("http://api.steampowered.com/ISteamApps/GetAppList/v0001")
+            const store = fetch(`https://store.steampowered.com/api/storesearch/?term=${encodeURIComponent("gta 5")}&l=english&cc=US`)
             .then(res=> res.json())
             .then(json=>{
                 return json;
@@ -23,21 +22,10 @@ module.exports = {
             })
         
             store.then((a) => {
-    
-                let obj = a["applist"]["apps"]["app"];
-                let titles = [];
-
-                for (var i = 0; i < obj.length; i++){
-                    titles.push(obj[i].name.toLowerCase());
-                }
-
-                let similarity = stringSimilarity.findBestMatch(name.toLowerCase(), titles);
-
-                app = obj[similarity.bestMatchIndex];
-                const appInfo = fetch(`http://store.steampowered.com/api/appdetails?appids=${app.appid}&cc=${country}`)
+                const appInfo = fetch(`http://store.steampowered.com/api/appdetails?appids=${a[`items`][0][`id`]}&cc=${country}`)
                 .then(res => res.json())
                 .then(json=>{
-                    var info = json[app.appid][`data`];
+                    var info = json[a[`items`][0][`id`]][`data`];
                     if(!info) rej(new Error(`Not found`));
                     res(info);
                 }).catch(e=>{
