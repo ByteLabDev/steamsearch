@@ -13,7 +13,7 @@ module.exports = {
         return new Promise(function(res, rej){
 
             if(!name || typeof name != "string") rej(new Error(`Invalid search`));
-            const store = fetch(`https://store.steampowered.com/api/storesearch/?term=${encodeURIComponent(name)}&l=english&cc=US`)
+            const store = fetch(`https://store.steampowered.com/api/storesearch/?term=${encodeURIComponent(name)}&l=english&cc=${country}`)
             .then(res=> res.json())
             .then(json=>{
                 return json;
@@ -22,6 +22,10 @@ module.exports = {
             })
         
             store.then((a) => {
+                if(a[`items`].length === 0){
+                    rej(new Error(`Not found`));
+                    return;
+                }
                 const appInfo = fetch(`http://store.steampowered.com/api/appdetails?appids=${a[`items`][0][`id`]}&cc=${country}`)
                 .then(res => res.json())
                 .then(json=>{
