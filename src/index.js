@@ -13,7 +13,7 @@ module.exports = {
         return new Promise(function(res, rej){
 
             if(!name || typeof name != "string") rej(new Error(`Invalid search`));
-            const store = fetch(`https://store.steampowered.com/api/storesearch/?term=${encodeURIComponent("gta 5")}&l=english&cc=US`)
+            const store = fetch(`https://store.steampowered.com/api/storesearch/?term=${encodeURIComponent(name)}&l=english&cc=US`)
             .then(res=> res.json())
             .then(json=>{
                 return json;
