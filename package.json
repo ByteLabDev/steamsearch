@@ -1,6 +1,6 @@
 {
   "name": "@bytelab/steamsearch",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Searches for apps on the Steam store.",
   "main": "src/index.js",
   "repository": {
